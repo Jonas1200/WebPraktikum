@@ -1,0 +1,36 @@
+h1{
+    text-align: center;
+    color: #eeeeee;
+    font-size: 60px;
+    
+}
+.header-bg{
+    background-color: #111111;
+    width: 100%;
+    height: 80px;
+    padding: 0;
+    margin: 0;
+}
+.header-link{
+    color: inherit;
+    text-decoration: None;
+}
+.content{
+    width: 80%;
+    margin: 0 0 5% 5%;
+    padding: 5% 5% 5% 5%; 
+    background-color: #eeeeee;
+}
+.input-field:hover{
+    outline: none;
+    box-shadow: 0px 0px 5px #61C5FA;
+    border:1px solid #5AB0DB;
+    border-radius:0;
+}
+.input-field{
+    border:1px solid #aaaaaa;
+    border-radius:0;
+}
+.input-container{
+    display: inline-block;
+}
