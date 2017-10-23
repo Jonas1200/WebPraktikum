@@ -1,11 +1,8 @@
 function confirmDelete_p (event_opl) {
     if ((event_opl.target.tagName.toLowerCase() == 'a') && (event_opl.target.className == "clDelete")) {
     // Klick auf Link zum Löschen
-
-        if (confirm("Do you want to continue deleting?") == true) {
-            return true;
-        } else {
-            return false;
+        if (!confirm("Do you want to continue deleting?")) {
+            event_opl.preventDefault();
         }
     // Ihre Ergänzung
     }

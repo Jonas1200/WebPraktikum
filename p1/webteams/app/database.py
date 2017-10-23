@@ -75,7 +75,7 @@ class Database_cl(object):
         if id_spl in self.data_o:
             self.data_o[id_spl] = self.getDefault_px()
             status_b = True
-            #pass
+
             # hier müssen Sie den Code ergänzen
             # Löschen als Zurücksetzen auf die Default-Werte implementieren
 

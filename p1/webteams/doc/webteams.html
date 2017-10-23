@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Jonas Kuschel, Leon Beer">
+  <title>Gruppe I</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header>
+<h1 class="title">Gruppe I</h1>
+<p class="author">Jonas Kuschel, Leon Beer</p>
+<p class="date">23.10.2017</p>
+</header>
+<h1 id="aufbau-der-webanwendung">Aufbau der Webanwendung</h1>
+<h2 id="struktur">Struktur</h2>
+<p>\ app</p>
+<blockquote>
+<p>\ application.py</p>
+</blockquote>
+<blockquote>
+<p>\ database.py</p>
+</blockquote>
+<blockquote>
+<p>\ view.py</p>
+</blockquote>
+<p>\ content</p>
+<blockquote>
+<p>\ form0.tpl</p>
+</blockquote>
+<blockquote>
+<p>\ form1.tpl</p>
+</blockquote>
+<blockquote>
+<p>\ form2.tpl</p>
+</blockquote>
+<blockquote>
+<p>\ list0.tpl</p>
+</blockquote>
+<blockquote>
+<p>\ list1.tpl</p>
+</blockquote>
+<blockquote>
+<p>\ list2.tpl</p>
+</blockquote>
+<blockquote>
+<p>\ Reset.css</p>
+</blockquote>
+<blockquote>
+<p>\ webteams.css</p>
+</blockquote>
+<blockquote>
+<p>\ webteams.js</p>
+</blockquote>
+<p>\ data</p>
+<blockquote>
+<p>\ webteams.json</p>
+</blockquote>
+<p>\ doc</p>
+<blockquote>
+<p>\ webteams.html</p>
+</blockquote>
+<blockquote>
+<p>\ webteams.md</p>
+</blockquote>
+<p>\ server.py</p>
+<h2 id="application.py">application.py</h2>
+<blockquote>
+<p>Erzeugt die Antworten zu entsprechenden Anfragen an den Server. Ist die Schnittstelle zum Server.</p>
+</blockquote>
+<h3 id="index">index</h3>
+<blockquote>
+<p>Führt auf die Startseite also die Liste.</p>
+</blockquote>
+<h3 id="add">add</h3>
+<blockquote>
+<p>Ruft die Formularseite auf um einen neuen Eintrag zu erstellen.</p>
+</blockquote>
+<h3 id="edit">edit</h3>
+<blockquote>
+<p>Ruft die Formularseite auf um einen bestehenden Eintrag zu editieren.</p>
+</blockquote>
+<h3 id="save">save</h3>
+<blockquote>
+<p>Speichert das Formular in der .JSON Datei.</p>
+</blockquote>
+<h3 id="delete">delete</h3>
+<blockquote>
+<p>Löscht den Eintrag aus der Liste und zeigt die Liste neu an.</p>
+</blockquote>
+<h3 id="default">default</h3>
+<blockquote>
+<p>Falls eine unbekannte Anforderung an den Webserver geschickt wird hiermit der Fehler ausgegeben.</p>
+</blockquote>
+<h2 id="database.py">database.py</h2>
+<blockquote>
+<p>Kümmert sich um Datenbank Anfragen. Editiert also die .JSON Datei.</p>
+</blockquote>
+<h2 id="view.py">view.py</h2>
+<blockquote>
+<p>Erzeugt die Anzeige für den User. Verknüpft dafür die .tpl zu einem Vollständigen HTML Document.</p>
+</blockquote>
+<h2 id="init.py"><strong>init</strong>.py</h2>
+<blockquote>
+<p>Kennzeichnet ein Verzeichnis als Python-Package.</p>
+</blockquote>
+<h2 id="form0.tpl">form0.tpl</h2>
+<blockquote>
+<p>Enthält den Kopfteil des Formulars.</p>
+</blockquote>
+<h2 id="form1.tpl">form1.tpl</h2>
+<blockquote>
+<p>Enthält Teile des Body Bereichs. Dieser Bereich wird für Eingaben genutzt.</p>
+</blockquote>
+<h2 id="form2.tpl">form2.tpl</h2>
+<blockquote>
+<p>Enthält das Ende des Dokuments. Hier wird der Speichern und Abbrechen Button angezeigt.</p>
+</blockquote>
+<h2 id="list0.tpl">list0.tpl</h2>
+<blockquote>
+<p>Enthält den Kopfteil des Dokuments. Hier wird auch der Kopteil der Tabelle beschrieben.</p>
+</blockquote>
+<h2 id="list1.tpl">list1.tpl</h2>
+<blockquote>
+<p>Enthält die Zeilen der Tabelle des Dokuments</p>
+</blockquote>
+<h2 id="list2.tpl">list2.tpl</h2>
+<blockquote>
+<p>Enthält das Ende des Dokuments. Außerdem ist hier der Link zur erfassen Seite.</p>
+</blockquote>
+<h2 id="reset.css">Reset.css</h2>
+<blockquote>
+<p>Hier werden alle Standard CSS Änderungen zurückgesetzt.</p>
+</blockquote>
+<h2 id="webteams.css">webteams.css</h2>
+<blockquote>
+<p>Hier wird die Webseite verschönert. Style Anpassungen können hier gemacht werden.</p>
+</blockquote>
+<h2 id="webteams.js">webteams.js</h2>
+<blockquote>
+<p>Hier wird das Löschen Event in der Liste abgefangen. Außerdem wird das Confirm-Popup implementiert, welches bei der Betätigung des Löschvorgangs in der Liste geöffnet wird. Der Löschvorgang kann durch die Confirm Message abgebrochen werden.</p>
+</blockquote>
+<h2 id="webteams.json">webteams.json</h2>
+<blockquote>
+<p>Hier werden die Daten der Anwendung gespeichert.</p>
+</blockquote>
+<h2 id="webteams.html">webteams.html</h2>
+<blockquote>
+<p>Dokumentation des Projektes in HTML Form.</p>
+</blockquote>
+<h2 id="webteams.md">webteams.md</h2>
+<blockquote>
+<p>Dokumentation des Projektes in Markdown Form.</p>
+</blockquote>
+<h2 id="server.py">server.py</h2>
+<blockquote>
+<p>Startet den Webserver. Besitzt die main() Funktion. Initilisiert cherrypy.</p>
+</blockquote>
+<h1 id="durchgeführte-ergänzungen">Durchgeführte Ergänzungen</h1>
+<h2 id="application.py-1">application.py</h2>
+<blockquote>
+<p>SemsterAnzahl für beide Gruppenmitglieder hinzugefügt.</p>
+</blockquote>
+<p>data_a = [ data_opl[&quot;name1_s&quot;]</p>
+<pre><code>    , data_opl[&quot;vorname1_s&quot;]
+    
+    , data_opl[&quot;matrnr1_s&quot;]
+    
+    , data_opl[&quot;semestAnzahl1_s&quot;]
+    
+    , data_opl[&quot;name2_s&quot;]
+    
+    , data_opl[&quot;vorname2_s&quot;]
+    
+    , data_opl[&quot;matrnr2_s&quot;]
+    
+    , data_opl[&quot;semestAnzahl2_s&quot;]
+    
+    ]</code></pre>
+<h2 id="database.py-1">database.py</h2>
+<blockquote>
+<p>Die delete_px() Funktion wurde erweitert. Hier wird die das aktuelle Element auf den Default Wert zurückgesetzt.</p>
+</blockquote>
+<pre><code>    self.data_o[id_spl] = self.getDefault_px()
+
+    status_b = True
+    </code></pre>
+<blockquote>
+<p>Default um 2 neue Werte erweitert um die Semesteranzahl fassen zu können.</p>
+</blockquote>
+<h2 id="form1.tpl-1">form1.tpl</h2>
+<blockquote>
+<p>Die Input Felder für die Semesteranzahl und den 2. Teamkollegen wurden hinzugefügt.</p>
+</blockquote>
+<h2 id="list0.tpl-1">list0.tpl</h2>
+<blockquote>
+<p>Die Überschrift für die Semesteranzahl wurde hinzugefügt.</p>
+</blockquote>
+<h2 id="list1.tpl-1">list1.tpl</h2>
+<blockquote>
+<p>Die Spalten für die Semesteranzahl wurden hinzugefügt. Außerdem wurde in den delete Link die Klasse (class=&quot;clDelete&quot;) hinzugefügt.</p>
+</blockquote>
+<h2 id="webteams.js-1">webteams.js</h2>
+<blockquote>
+<p>Es wurde eine Abfrage hinzugefügt die Testet, ob der User die Gruppe wirklich löschen möchte.</p>
+</blockquote>
+<pre><code>    if (!confirm(&quot;Do you want to continue deleting?&quot;)) {
+        event_opl.preventDefault();
+    }</code></pre>
+<h1 id="beschreibung-des-http-datenverkehrs">Beschreibung des HTTP-Datenverkehrs</h1>
+<h2 id="beim-start-der-anwendung">beim Start der Anwendung</h2>
+<ul>
+<li><p>Methode <code>GET /</code> -&gt; index</p></li>
+<li><p>Methode <code>GET /webteams.js</code></p></li>
+<li><p>Methode <code>GET /webteams.css</code></p></li>
+<li><p>Methode <code>GET /reset.css</code></p></li>
+</ul>
+<h2 id="beim-speichern-von-formulardaten">beim Speichern von Formulardaten</h2>
+<ul>
+<li><code>POST /save</code></li>
+</ul>
+</body>
+</html>

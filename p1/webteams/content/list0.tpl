@@ -4,7 +4,7 @@
         <title>Web-Teams</title>
         <meta charset="UTF-8" />
         <style>
-            @import "/Reset.css";
+            @import "/reset.css";
             @import "/webteams.css";
         </style>
         <script type="text/javascript" src="/webteams.js"></script>
