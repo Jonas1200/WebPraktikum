@@ -35,22 +35,10 @@ class Database_cl(object):
         # 'freien' Platz suchen,
         # falls vorhanden: belegen und Nummer des Platzes als Id zurückgeben
 
-        #id_s = None
-        #for loop_i in range(0, 15):
-        #    if self.data_o[str(loop_i)][0] == '':
-        #        id_s = str(loop_i)
-        #        self.data_o[id_s] = data_opl
-        #        self.saveData_p()
-        #        break
-        id_s = None
-        loop_i = 0
-        while self.data_o[loop_i][0] != '':
-            loop_i += 1
-        id_s = str(loop_i)
-        self.data_o[id_s] = data_opl
+        if not data_opl[0] in self.data_o:
+            self.data_o[data_opl[0]] = data_opl[1:]
         self.saveData_p()
-        
-        return id_s
+        return data_opl[0]
 
     #-------------------------------------------------------
     def read_px(self, id_spl=None):
@@ -107,9 +95,8 @@ class Database_cl(object):
         except:
             # Datei neu anlegen
             self.data_o = {}
-            for loop_i in self.data_o:
-                self.data_o[str(loop_i)] = ['', '', '', '', '', '', '', ''] # HIER müssen Sie eine Ergänzung vornehmen
-                self.saveData_p()
+            #self.data_o = {"0":[''] * self.size}
+            self.saveData_p()
         else:
             with fp_o:
                 self.data_o = json.load(fp_o)
@@ -123,15 +110,16 @@ class Database_cl(object):
             json.dump(self.data_o, fp_o)
 
     #-------------------------------------------------------
-    def userExists_px(self, email):
+    def entryExists_px(self, value):
     #-------------------------------------------------------
-        if email in self.data_o:
+        if value in self.data_o:
             return True
         return False
     #-------------------------------------------------------
-    def addAbsolvent(self, email, password):
+    def passwordValidation(self, email, password):
     #-------------------------------------------------------
         if email in self.data_o:
-            return True
-        return False       
+            if password == self.data_o[email][0]:
+                return True
+        return False
 # EOF

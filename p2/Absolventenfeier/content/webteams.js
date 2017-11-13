@@ -42,21 +42,21 @@ function checkPassword(){
     var d = document;
     var len = false;
     var mat = false;
-    if (l.passwort1.value.length == 0){
+    if (l.password_s.value.length == 0){
         d.getElementById('passwordLength').innerHTML = 'Passwort zu kurz!';
         d.getElementById('passwordLength').style.color = 'red';
         len = false;
-    } else if (l.passwort1.value.length < 3){
+    } else if (l.password_s.value.length < 3){
         d.getElementById('passwordLength').innerHTML = 'Mittlere Sicherheit';
         d.getElementById('passwordLength').style.color = 'orange';
         len = true;
-    } else if (l.passwort1.value.length >= 3){
+    } else if (l.password_s.value.length >= 3){
         d.getElementById('passwordLength').innerHTML = 'Hohe Sicherheit';
         d.getElementById('passwordLength').style.color = 'green';
         len = true;
     }
     
-    if (l.passwort1.value != l.passwort2.value) {
+    if (l.password_s.value != l.password2_s.value) {
         d.getElementById('passwordMatch').innerHTML = 'Passwörter stimmen nicht überein!';
         d.getElementById('passwordMatch').style.color = 'red';
         var mat = false;

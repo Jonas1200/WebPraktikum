@@ -29,22 +29,21 @@ class View_cl(object):
         
         markup_s = ''
         markup_s += self.readFile_p('list0.tpl')
-
         markupV_s = self.readFile_p('list1.tpl')
         lineT_o = string.Template(markupV_s)
         # mehrfach nutzen, um die einzelnen Zeilen der Tabelle zu erzeugen
-        for loop_i in range(0,15):
-            data_a = data_opl[str(loop_i)]
-            markup_s += lineT_o.safe_substitute (name1_s=data_a[0] # HIER müssen Sie eine Ergänzung vornehmen
-            , vorname1_s=data_a[1]
-            , matrnr1_s=data_a[2]
-            , semestAnzahl1_s=data_a[3]
-            , name2_s=data_a[4]
-            , vorname2_s=data_a[5]
-            , matrnr2_s=data_a[6]
-            , semestAnzahl2_s=data_a[7]
-            , id_s=str(loop_i)
-            )
+        #for loop_i in self.data:
+        #    data_a = data_opl[str(loop_i)]
+        #    markup_s += lineT_o.safe_substitute (name1_s=data_a[0] # HIER müssen Sie eine Ergänzung vornehmen
+        #    , vorname1_s=data_a[1]
+        #    , matrnr1_s=data_a[2]
+        #    , semestAnzahl1_s=data_a[3]
+        #    , name2_s=data_a[4]
+        #    , vorname2_s=data_a[5]
+        #    , matrnr2_s=data_a[6]
+        #    , semestAnzahl2_s=data_a[7]
+        #    , id_s=str(loop_i)
+        #    )
 
         markup_s += self.readFile_p('list2.tpl')
 
@@ -108,6 +107,15 @@ class View_cl(object):
         
         return markup_s
 
+    #-------------------------------------------------------
+    def createAbsolventenfeier_px(self):
+    #-------------------------------------------------------
+        # hier müsste noch eine Fehlerbehandlung ergänzt werden !
+        markup_s = ''
+        markup_s += self.readFile_p('Absolventenfeier.tpl')
+        
+        return markup_s
+    
     #-------------------------------------------------------
     def createForm_px(self, id_spl, data_opl):
     #-------------------------------------------------------

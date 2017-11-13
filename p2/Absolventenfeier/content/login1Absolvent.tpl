@@ -12,6 +12,6 @@
                         <tr>
                             <div >
                                 <td><label for="password_s">Passwort</label></td>
-                                <td><input type="password" name="passwort1" onkeyup="checkPassword()" class="input-field" id="password_s" name="password_s" required /></td>
+                                <td><input type="password" onkeyup="checkPassword()" class="input-field" id="password_s" name="password_s" required /></td>
                             </div>
                         </tr>

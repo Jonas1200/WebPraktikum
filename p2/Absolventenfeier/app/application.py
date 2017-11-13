@@ -14,9 +14,9 @@ class Application_cl(object):
     #-------------------------------------------------------
         # spezielle Initialisierung können hier eingetragen werden
         self.db_o = Database_cl('webteams.json',4)
-        self.absolventenfeier_o = Database_cl('Absolventenfeier.json',5)
-        self.absolvent_o = Database_cl('Absolvent.json',9)
-        self.fb_o = Database_cl('FB.json',6)
+        self.absolventenfeier_o = Database_cl('Absolventenfeier.json',4)
+        self.absolvent_o = Database_cl('Absolvent.json',7)
+        self.fb_o = Database_cl('FB.json',5)
         self.view_o = View_cl()
 
     @cherrypy.expose
@@ -36,6 +36,12 @@ class Application_cl(object):
     def addFB(self):
     #-------------------------------------------------------
         return self.createRegisterFB_p()
+    
+    @cherrypy.expose
+    #-------------------------------------------------------
+    def addAbsolventenfeier(self):
+    #-------------------------------------------------------
+        return self.createAbsolventenfeier_p()
 
     @cherrypy.expose
     #-------------------------------------------------------
@@ -90,26 +96,64 @@ class Application_cl(object):
 
         # data_opl: Dictionary mit den gelieferten key-value-Paaren
         if len(data_opl) == 2:
-            if self.absolvent_o.userExists_px(data_opl["user_s"]):
-                data_a = [ data_opl["user_s"]
-                           ,data_opl["password_s"]
-                ]
-                
-        if len(data_opl) == 3:
-            if self.absolvent_o.userExists_px(data_opl["user_s"]):
+            if not self.absolvent_o.entryExists_px(data_opl["user_s"]):
+                raise cherrypy.HTTPRedirect("/addAbsolvent")
+            else:
+                if not self.absolvent_o.passwordValidation(data_opl["user_s"],data_opl["password_s"]):
+                    test = 3 #löschen
+                    #error handling
+                    
+        if len(data_opl) >= 3:
+            if not self.absolvent_o.entryExists_px(data_opl["user_s"]):
                 data_a = [ data_opl["user_s"]
                           ,data_opl["password_s"]
-                          ,data_opl["password2_s"]
+                          ,data_opl["name_s"]
+                          ,data_opl["firstname_s"]
+                          ,data_opl["matNr_s"]
+                          ,data_opl["company_s"]
+                          ,data_opl["theme_s"]
+                          ,data_opl["type_s"]
                 ]
-        if id_s != "None":
-            # Update-Operation
-            self.db_o.update_px(id_s, data_a)
-        else:
-            # Create-Operation
-            id_s = self.db_o.create_px(data_a)
+                self.absolvent_o.create_px(data_a)
         
-        return self.createForm_p(id_s)
+        return self.createList_p(id_s)
+    @cherrypy.expose
+    #-------------------------------------------------------
+    def submitLoginFB(self, **data_opl):
+    #-------------------------------------------------------
+        # Sichern der Daten: aufgrund der Formularbearbeitung muss
+        # eine vollständige HTML-Seite zurückgeliefert werden!
 
+        # data_opl: Dictionary mit den gelieferten key-value-Paaren
+        if len(data_opl) == 2:
+            if not self.fb_o.entryExists_px(data_opl["user_s"]):
+                raise cherrypy.HTTPRedirect("/addFB")
+            else:
+                if not self.fb_o.passwordValidation(data_opl["user_s"],data_opl["password_s"]):
+                    test = 3 #löschen
+                    #error handling
+                    
+        if len(data_opl) >= 3:
+            if not self.fb_o.entryExists_px(data_opl["user_s"]):
+                data_a = [ data_opl["user_s"]
+                          ,data_opl["password_s"]
+                          ,data_opl["name_s"]
+                          ,data_opl["firstname_s"]
+                          ,data_opl["degree_s"]
+                          ,data_opl["inspector_s"]
+                ]
+                self.fb_o.create_px(data_a)
+        
+        return self.createList_p(id_s)
+    
+    @cherrypy.expose
+    #-------------------------------------------------------
+    def submitAbsolventenfeier(self, **data_opl):
+    #-------------------------------------------------------
+        if not self.fb_o.entryExists_px(data_opl["user_s"]):
+            self.fb_o.create_px(data_opl)
+        return self.createAbsolventenfeier_p(id_s)
+        
     @cherrypy.expose
     #-------------------------------------------------------
     def delete(self, id):
@@ -133,7 +177,7 @@ class Application_cl(object):
     #-------------------------------------------------------
     def createList_p(self):
     #-------------------------------------------------------
-        data_o = self.db_o.read_px()
+        data_o = self.absolventenfeier_o.read_px()
         # mit diesen Daten Markup erzeugen
         return self.view_o.createList_px(data_o)
     #-------------------------------------------------------
@@ -166,4 +210,8 @@ class Application_cl(object):
     #-------------------------------------------------------
         return self.view_o.createRegisterFB_px()    
     
+    #-------------------------------------------------------
+    def createAbsolventenfeier_p(self):
+    #-------------------------------------------------------
+        return self.view_o.createAbsolventenfeier_px()     
 # EOF
