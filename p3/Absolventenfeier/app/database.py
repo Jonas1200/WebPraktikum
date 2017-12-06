@@ -27,10 +27,38 @@ class Database_cl(object):
         # 'freien' Platz suchen,
         # falls vorhanden: belegen und Nummer des Platzes als Id zurückgeben
 
-        if not data_opl[0] in self.data_o:
-            self.data_o[data_opl[0]] = data_opl[1:]
+
+        #id_s = 1
+        #while id_s in self.data_o:
+        #    id_s += 1
+        #id_s = str(id_s)
+
+        id_s = str(self.getNewCurrentID())
+        self.data_o[id_s] = data_opl
         self.saveData_p()
-        return data_opl[0]
+        #
+        #
+        # self.data_o[id_s] = data_opl
+        # for loop_i in range(0, 15):
+        #     if self.data_o[str(loop_i)][0] == '':
+        #         id_s = str(loop_i)
+        #         self.data_o[id_s] = data_opl
+        #         self.saveData_p()
+        #         break
+        #
+        # return id_s
+        #
+        # if not data_opl[0] in self.data_o:
+        #     self.data_o[data_opl[0]] = data_opl[1:]
+        # self.saveData_p()
+        #return data_opl[0]
+        return id_s
+
+    #-------------------------------------------------------
+    def getNewCurrentID(self):
+        id_s = self.data_o[str(0)][0]
+        self.data_o[str(0)][0] = int(id_s) + 1
+        return id_s
 
     #-------------------------------------------------------
     def read_px(self, id_spl=None):
@@ -63,8 +91,10 @@ class Database_cl(object):
             self.saveData_p()    
     
     #-------------------------------------------------------
-    def delete_px(self, entry):
+    def delete_px(self, entry, isId=True):
     #-------------------------------------------------------
+        if not isId:
+            entry = self.getEntryID(entry)
         if entry in self.data_o:
             del self.data_o[entry]
             self.saveData_p()
@@ -73,7 +103,22 @@ class Database_cl(object):
 
             # Ihre Ergänzung
 
-    #-------------------------------------------------------
+    # -------------------------------------------------------
+    def getIdList(self, dataList, pos):
+    # -------------------------------------------------------
+        IdList = []
+        data = []
+        data.append(dataList)
+        for i in data:
+            for loop in self.data_o:
+                if loop != '0':
+                    if self.data_o[loop][pos] == i:
+                        IdList.append(loop)
+     #       bla=self.getEntryID(data[loop], pos1)
+      #      IdList.append(self.getEntryID(data[loop], pos1))
+        return IdList
+
+#-------------------------------------------------------
     def getDefault_px(self):
     #-------------------------------------------------------
         
@@ -86,8 +131,8 @@ class Database_cl(object):
             fp_o = codecs.open(os.path.join('data', self.database_str), 'r', 'utf-8')
         except:
             # Datei neu anlegen
-            self.data_o = {}
-            #self.data_o = {"0":[''] * self.size}
+            #self.data_o = {}
+            self.data_o = {"0":['1'] + [''] * (self.size - 1)}
             self.saveData_p()
         else:
             with fp_o:
@@ -104,14 +149,24 @@ class Database_cl(object):
     #-------------------------------------------------------
     def entryExists_px(self, value):
     #-------------------------------------------------------
-        if value in self.data_o:
-            return True
+        for item in self.data_o:
+            if item != '0':
+                if self.data_o[item][0] == value:
+                    return True
         return False
     #-------------------------------------------------------
     def passwordValidation(self, email, password):
     #-------------------------------------------------------
-        if email in self.data_o:
-            if password == self.data_o[email][0]:
+        for item in self.data_o:
+            if self.data_o[item][0] == email and self.data_o[item][1] == password:
                 return True
         return False
+    # -------------------------------------------------------
+    def getEntryID(self, data, pos = 0):
+    # -------------------------------------------------------
+        for item in self.data_o:
+            if item != 0:
+                if self.data_o[item][pos] == data:
+                    return item
+        return -1
 # EOF

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Web-Teams</title>
+        <title>Absolventenfeier</title>
         <meta charset="UTF-8" />
         <style>
             @import "/reset.css";
-            @import "/webteams.css";
+            @import "/absolventenfeier.css";
         </style>
-        <script type="text/javascript" src="/webteams.js"></script>
+        <script type="text/javascript" src="/absolventenfeier.js"></script>
     </head>
     <body>
         <a href="/index" class="header-link">
