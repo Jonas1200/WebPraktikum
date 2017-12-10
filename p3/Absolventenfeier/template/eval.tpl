@@ -8,7 +8,6 @@
             @import "/reset.css";
             @import "/absolventenfeier.css";
         </style>
-        <script type="text/javascript" src="/absolventenfeier.js"></script>
     </head>
     <body>
         <a href="/index" class="header-link">
@@ -34,8 +33,13 @@
                     %endif
                 % endfor
             </table>
-            <div>
+            <div class="mb3">
                 <a href="/addAbsolventenfeier" class="btn">Absolventenfeier hinzufügen</a>
+            </div>
+            <h2>Datenpflege und Auswertung</h2>
+            <hr />
+            <div>
+                <a href="/abschlussarbeiten" class="btn">Abschlussarbeiten</a>
                 <a href="/AbsolventenListe" class="btn">Alle Absolventen</a>
             </div>
         </div>

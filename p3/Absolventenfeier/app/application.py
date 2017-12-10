@@ -153,7 +153,7 @@ class Application_cl(object):
     def editAbsolvent(self, data):
     #-------------------------------------------------------
         data_a = self.absolvent_o.read_px()
-        return self.view_o.createEditAbsolvent_px(data_a, self.absolvent_o.getEntryID(data))
+        return self.view_o.createEditAbsolvent_px(data_a,data)
 
     @cherrypy.expose
     #-------------------------------------------------------
@@ -177,10 +177,13 @@ class Application_cl(object):
         zugeordnet = self.absolvent_prüfer.getIdList(data, 0)
         vars = []
         if len(zugeordnet) != 0:
-            vars = self.absolvent_prüfer.read_px(zugeordnet)
+            prüfer = self.absolvent_prüfer.read_px(zugeordnet[0])
+            vars.append(prüfer[1])
+            vars.append(prüfer[2])
         else:
             vars = [' ',' ']
         vars += self.absolvent_o.read_px(data)
+        vars += str(data)
         data_o = self.fb_o.read_px()
         fb_prof_ids = self.fb_o.getIdList("Professor",6)
         data_b = {}
@@ -188,6 +191,63 @@ class Application_cl(object):
             if int(loop) != 0:
                 data_b[str(loop)] = self.fb_o.read_px(loop)
         return self.view_o.createList_px('PrüferZuordnen.tpl', data_o, vars, data_b)
+
+    @cherrypy.expose
+    # -------------------------------------------------------
+    def submitZuordnung(self, **data_opl):
+    # -------------------------------------------------------
+        if not data_opl["pruefer1"] == data_opl["pruefer2"]:
+            if not self.absolvent_prüfer.entryExists_px(data_opl['id_s']):
+                data_a = [data_opl["id_s"]
+                    , data_opl["pruefer1"]
+                    , data_opl["pruefer2"]
+                ]
+                self.absolvent_prüfer.create_px(data_a)
+            else:
+                data_a = [ data_opl["id_s"]
+                    , data_opl["pruefer1"]
+                    , data_opl["pruefer2"]
+                ]
+                self.absolvent_prüfer.update_px(data_a)
+        raise cherrypy.HTTPRedirect("/AbsolventenListe")
+
+    @cherrypy.expose
+    # -------------------------------------------------------
+    def abschlussarbeiten(self):
+    # -------------------------------------------------------
+        bachelorIDs = self.absolvent_o.getIdList('bachelor',7)
+        masterIDs = self.absolvent_o.getIdList('master', 7)
+        bachelor = self.getAbschlussarbeiten(bachelorIDs)
+        master = self.getAbschlussarbeiten(masterIDs)
+        return self.view_o.createList_px('AbschlussarbeitenListe.tpl', bachelor, None, master)
+
+    # -------------------------------------------------------
+    def getAbschlussarbeiten(self, IDs):
+    # -------------------------------------------------------
+        abschlussarbeit = {}
+        if len(IDs) != 0:
+            for loop in IDs:
+                if int(loop) != 0:
+                    zuordnungID = []
+                    current = []
+                    absolvent = self.absolvent_o.read_px(loop)
+                    zuordnungID = self.absolvent_prüfer.getIdList(loop, 0)
+                    if len(zuordnungID) != 0:
+                        zuordnung = self.absolvent_prüfer.read_px(zuordnungID[0])
+                        pruefer1 = self.fb_o.read_px(zuordnung[1])
+                        pruefer2 = self.fb_o.read_px(zuordnung[2])
+                        current.append(pruefer1[3] + ' ' + pruefer1[2])
+                    else:
+                        current.append(' ')
+                    current.append(absolvent[3] + ' ' + absolvent[2])
+                    current.append(absolvent[4])
+                    if len(zuordnungID) != 0:
+                        current.append(pruefer2[3] + ' ' + pruefer2[2])
+                    else:
+                        current.append(' ')
+                    current.append(absolvent[6])
+                    abschlussarbeit[loop] = current
+        return abschlussarbeit
 
     @cherrypy.expose
     # -------------------------------------------------------

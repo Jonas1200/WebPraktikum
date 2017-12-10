@@ -90,13 +90,14 @@ class View_cl(object):
         lineT_o = string.Template(markupV_s)
         # mehrfach nutzen, um die einzelnen Zeilen der Tabelle zu erzeugen
         if user in data_opl:
-            markup_s += lineT_o.safe_substitute (user_s=user # HIER müssen Sie eine Ergänzung vornehmen
-            , name_s=data_opl[user][1]
-            , firstname_s=data_opl[user][2]
-            , matNr_s=data_opl[user][3]
-            , company_s=data_opl[user][4]
-            , theme_s=data_opl[user][5]
-            , type_s=data_opl[user][6]
+            markup_s += lineT_o.safe_substitute (user_s=data_opl[user][0] # HIER müssen Sie eine Ergänzung vornehmen
+            , name_s=data_opl[user][2]
+            , firstname_s=data_opl[user][3]
+            , matNr_s=data_opl[user][4]
+            , company_s=data_opl[user][5]
+            , theme_s=data_opl[user][6]
+            , type_s=data_opl[user][7]
+            , id_s=user
             )
 
         return markup_s

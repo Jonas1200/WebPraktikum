@@ -8,7 +8,7 @@
             @import "/reset.css";
             @import "/absolventenfeier.css";
         </style>
-        <script type="text/javascript" src="/absolventenfeier.js"></script>
+        <script src="/absolventenfeier.js"></script>
     </head>
     <body>
         <a href="/index" class="header-link">
@@ -17,7 +17,9 @@
             </div>
         </a>
         <div class="content">
-			<form id="idWTForm" name="Login" onsubmit="return checkLoginData();" action="/Zuordnen" method="POST">
+			<form id="idWTForm" action="/submitZuordnung" method="POST">
+
+				<input type="hidden" value="${vars[10]}" id="id_s" name="id_s" />
 				<h2>Prüfer Zuordnen</h2>
 				<hr />
 				<table>
@@ -28,18 +30,17 @@
 						<tr>
 							<td>${vars[5]} ${vars[4]}</td><td>${vars[6]}</td>
                             <td>
-                                    <select name="pruefer1" id="pruefer1" value="${vars[0]}" id="type_s">
-                                        <option value=" "> </option>
+                                    <select name="pruefer1" id="pruefer1" class="${vars[0]}">
+                                        <option id="empty1" value="empty"> </option>
                                         % for key_s in data_b:
-                                                ##hier müssen noch FB mitglieder übergeben werden
-                                                    <option id="f${key_s}" value="${key_s}">${data_b[key_s][3] + ' ' + data_b[key_s][2]} </option>
+                                            <option id="f${key_s}" value="${key_s}">${data_b[key_s][3] + ' ' + data_b[key_s][2]} </option>
 
                                         % endfor
                                     </select>
                             </td>
                             <td>
-                                    <select name="pruefer2"  id="pruefer2" value="${vars[1]}" id="type_s">
-                                        <option value=" "> </option>
+                                    <select name="pruefer2"  id="pruefer2" class="${vars[1]}" >
+                                        <option id="empty2" value="empty"> </option>
                                         % for key_s in data_o:
                                             % if int(key_s) != 0:
                                                 <option id="s${key_s}" value="${key_s}">${data_o[key_s][3] + ' ' + data_o[key_s][2]} </option>
@@ -47,7 +48,7 @@
                                         % endfor
                                     </select>
                             </td>
-							<td><a href="/PrüferZuordnen/${vars[0]}" class="btn">Prüfer Zuordnen -></a></td>
+							<td><input class="btn" type="submit" value="Prüfer Zuordnen ->" /></td>
 						</tr>
 				</table>
 			</form>

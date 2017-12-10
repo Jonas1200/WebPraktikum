@@ -7,41 +7,77 @@ function confirmDelete_p (event_opl) {
     // Ihre Ergänzung
     }
 }
+document.addEventListener("DOMContentLoaded", presetPruefer);
 
 window.onload = function () {
     let body_o = document.getElementsByTagName('body')[0];
     body_o.addEventListener('click', confirmDelete_p, false);
-    pruefer1 = document.getElementById("pruefer1");
-    pruefer1.addEventListener("change", pruefer1Change, false);
-    pruefer2 = document.getElementById("pruefer2");
-    pruefer2.addEventListener("change", pruefer2Change, false);
-    //document.getElementsByTagName("pruefer1").onchange =
+    if (document.getElementById("pruefer1") != null) {
+        var pruefer1 = document.getElementById("pruefer1");
+        pruefer1.addEventListener("change", pruefer1Change, false);
+        var pruefer2 = document.getElementById("pruefer2");
+        pruefer2.addEventListener("change", pruefer2Change, false);
+
+    }
+}
+
+
+
+function presetPruefer(){
+    d = document;
+    if (pruefer1 = d.getElementById('pruefer1') != null){
+        pruefer1 = d.getElementById('pruefer1');
+        pruefer2 = d.getElementById('pruefer2');
+        if (pruefer1.className != "empty"){
+            var str = 'f' + pruefer1.className;
+            console.log(str);
+            d.getElementById(str).selected = true;
+            strpruefer2 = 's' + pruefer1.className;
+            console.log(strpruefer2);
+            if (d.getElementById(strpruefer2) != null){
+                d.getElementById(strpruefer2).style.display = "none";
+            }
+        } else{
+            d.getElementById("empty1").selected = true;
+        }
+        if (pruefer2.className != "empty"){
+            var str = 's' + pruefer2.className;
+            d.getElementById(str).selected = true;
+            strpruefer1 = 'f' + pruefer2.className;
+            console.log(strpruefer1);
+            if (d.getElementById(strpruefer1) != null){
+                d.getElementById(strpruefer1).style.display = "none";
+            }
+        } else{
+            d.getElementById("empty2").selected = true;
+        }
+    }
 }
 
 function pruefer1Change (event_opl) {
-    d = document
+    var d = document
     //pruefer1 = d.getElementById('pruefer1');
     console.log(this.value + "has been selected");
-    sel = d.getElementById("pruefer2");
+    var sel = d.getElementById("pruefer2");
     for (i = 0; i < sel.options.length; i++)
     {
         sel[i].style.display = "";
     }
-    idStr = 's' + this.value;
-    opt = d.getElementById(idStr);
+    var idStr = 's' + this.value;
+    var opt = d.getElementById(idStr);
     opt.style.display = "none";
 }
 
 function pruefer2Change (event_opl) {
-    d = document
+    var d = document
     console.log(this.value + "has been selected");
-    sel = d.getElementById("pruefer1");
+    var sel = d.getElementById("pruefer1");
     for (i = 0; i < sel.options.length; i++)
     {
         sel[i].style.display = "";
     }
-    idStr = 'f' + this.value;
-    opt = d.getElementById(idStr);
+    var idStr = 'f' + this.value;
+    var opt = d.getElementById(idStr);
     opt.style.display = "none";
 }
 

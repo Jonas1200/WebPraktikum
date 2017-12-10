@@ -8,7 +8,6 @@
             @import "/reset.css";
             @import "/absolventenfeier.css";
         </style>
-        <script type="text/javascript" src="/absolventenfeier.js"></script>
     </head>
     <body>
         <a href="/index" class="header-link">
@@ -22,7 +21,7 @@
             <table>
                 <tr>
                     <th>Absolvent</th><th>Begleitpersonen</th>
-                    <th>Aktionen</th>
+                    ##<th>Aktionen</th>
                 </tr>
                 %  for key_s in data_o:
                     <tr>

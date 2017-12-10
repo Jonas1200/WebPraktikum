@@ -14,17 +14,11 @@
             <div class="header-bg ">
                 <h1>Absolventenfeier</h1>
             </div>
-            </a>
-            <div class="content">
-                <table>
-                    <tr>
-                        <td><a href="/loginAbsolvent" class="btn">Anmeldung Absolvent</a></td><td><a href="/addAbsolvent" class="btn">Registrierung Absolvent</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="/loginFB" class="btn">Anmeldung Mitglied FB</a></td><td><a href="/addFB" class="btn">Registrierung Mitglied FB</a></td>
-                    </tr>
-                <table>
-        <a href="/eval" class="btn">Datenpflege und Auswertung</a>
+        </a>
+        <div class="content">
+            <a href="/loginAbsolvent" class="btn btn-i25">Anmeldung Absolvent</a><a href="/addAbsolvent" class="btn btn-i25">Registrierung Absolvent</a><br/>
+            <a href="/loginFB" class="btn btn-i25">Anmeldung Mitglied FB</a><a href="/addFB" class="btn btn-i25">Registrierung Mitglied FB</a><br/>
+            <a href="/eval" class="btn btn-i30">Datenpflege und Auswertung</a>
         </div>
     </body>
 </html>
