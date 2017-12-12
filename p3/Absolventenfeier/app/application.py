@@ -13,8 +13,6 @@ class Application_cl(object):
     #-------------------------------------------------------
     def __init__(self):
     #-------------------------------------------------------
-        # spezielle Initialisierung können hier eingetragen werden
-        #self.db_o = Database_cl('webteams.json',4)
         self.absolventenfeier_o = Database_cl('Absolventenfeier.json',5)
         self.absolvent_o = Database_cl('Absolvent.json',8)
         self.fb_o = Database_cl('FB.json',6)
@@ -116,8 +114,6 @@ class Application_cl(object):
     #-------------------------------------------------------
     def deleteSignInAbsolvent(self, data):
     #-------------------------------------------------------
-        # Eintrag löschen, dann Liste neu anzeigen
-
         self.anmeldungen_absolvent_o.delete_px(data)
         raise cherrypy.HTTPRedirect("/index")
     
@@ -125,8 +121,6 @@ class Application_cl(object):
     #-------------------------------------------------------
     def deleteSignInFB(self, data):
     #-------------------------------------------------------
-        # Eintrag löschen, dann Liste neu anzeigen
-
         self.anmeldungen_fb_o.delete_px(data)
         raise cherrypy.HTTPRedirect("/index")
 
@@ -144,7 +138,6 @@ class Application_cl(object):
     #-------------------------------------------------------
     def editAbsolventenfeier(self, data):
     #-------------------------------------------------------
-        # Eintrag löschen, dann Liste neu anzeigen
         data_a = [data] + self.absolventenfeier_o.read_px(data)
         return self.view_o.createList_px('updateAbsolventenfeier.tpl', data_a)
 
@@ -253,7 +246,6 @@ class Application_cl(object):
     # -------------------------------------------------------
     def updateAbsolventenfeier(self, **data_opl):
         # -------------------------------------------------------
-        # Eintrag löschen, dann Liste neu anzeigen
         data_a = [data_opl["id_s"]
             , data_opl["absolventenfeier_s"]
             , data_opl["begin_t"]
@@ -267,7 +259,6 @@ class Application_cl(object):
     #-------------------------------------------------------
     def confirmEditAbsolvent(self, **data_opl):
     #-------------------------------------------------------
-        # Eintrag löschen, dann Liste neu anzeigen
         data_a = [ data_opl["id_s"]
                   ,data_opl["user_s"]
                   ,data_opl["name_s"]
@@ -284,7 +275,6 @@ class Application_cl(object):
     #-------------------------------------------------------
     def confirmEditFB(self, **data_opl):
     #-------------------------------------------------------
-        # Eintrag löschen, dann Liste neu anzeigen
         data_a = [ data_opl["id_s"]
                   ,data_opl["user_s"]
                   ,data_opl["name_s"]
@@ -298,10 +288,6 @@ class Application_cl(object):
     #-------------------------------------------------------
     def submitLoginAbsolvent(self, **data_opl):
     #-------------------------------------------------------
-        # Sichern der Daten: aufgrund der Formularbearbeitung muss
-        # eine vollständige HTML-Seite zurückgeliefert werden!
-
-        # data_opl: Dictionary mit den gelieferten key-value-Paaren
         if len(data_opl) == 2:
             if not self.absolvent_o.passwordValidation(data_opl["user_s"],data_opl["password_s"]):
                 raise cherrypy.HTTPRedirect("/loginAbsolvent")
@@ -327,10 +313,6 @@ class Application_cl(object):
     #-------------------------------------------------------
     def submitLoginFB(self, **data_opl):
     #-------------------------------------------------------
-        # Sichern der Daten: aufgrund der Formularbearbeitung muss
-        # eine vollständige HTML-Seite zurückgeliefert werden!
-
-        # data_opl: Dictionary mit den gelieferten key-value-Paaren
         if len(data_opl) == 2:
             if not self.fb_o.passwordValidation(data_opl["user_s"],data_opl["password_s"]):
                 raise cherrypy.HTTPRedirect("/loginFB")
@@ -347,8 +329,9 @@ class Application_cl(object):
                           ,data_opl["type_s"]
                 ]
                 self.fb_o.create_px(data_a)
-        
-        return self.createListFB_p(data_opl["user_s"])
+            else:
+                raise cherrypy.HTTPRedirect("/addFB")
+        return self.createListFB_p(self.fb_o.getEntryID(data_opl["user_s"]))
     
     @cherrypy.expose
     #-------------------------------------------------------
@@ -377,15 +360,13 @@ class Application_cl(object):
     def createListAbsolvent_p(self, user):
     #-------------------------------------------------------
         data_o = self.absolventenfeier_o.read_px()
-        # mit diesen Daten Markup erzeugen
-        return self.view_o.createListAbsolvent_px(data_o, user)
+        return self.view_o.createList_px('AbsolventenfeierListeAB.tpl', data_o, user)
     
     #-------------------------------------------------------
     def createListFB_p(self, user):
     #-------------------------------------------------------
         data_o = self.absolventenfeier_o.read_px()
-        # mit diesen Daten Markup erzeugen
-        return self.view_o.createListFB_px(data_o, user)
+        return self.view_o.createList_px('AbsolventenfeierListeFB.tpl', data_o, user)
     
     #-------------------------------------------------------
     def createIndex_p(self):

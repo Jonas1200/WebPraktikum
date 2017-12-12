@@ -31,34 +31,17 @@ an eine Feier zu bearbeiten. Daher ist auch das Abmelden von einer Absolventenfe
 
 > Kennzeichnet ein Verzeichnis als Python-Package.
 
-##list*.tpl
+##AbsolventenfeierListeAB.tpl
 
->Dieses Dokument zeigt alle existierenden Absolventenfeiern an.
-Es ermöglicht über einen link das erstellen von neuen Absolventenfeiern.
+>Dieses Dokument zeigt alle existierenden Absolventenfeiern an. Über diese Seite
+können die Daten des Absolventen angepasst werden.
 Auf diese Seite kann man nur über die Registrierung oder die Anmeldung gelangen.
-Die Seite kann nicht direkt aufgerufen werden. Manche list Elemente
-werden für die Absolventenfeiern der Absolventen und der FB genutzt.
 
-##list0.tpl
+##AbsolventenfeierListeFB.tpl
 
-> Enthält den Kopfteil des Absolventenfeier Dokuments.
-Hier wird auch der Kopteil der Tabelle beschrieben.
-
-##list1Absolvent.tpl
-
-> Enthält die Zeilen der Tabelle des Dokuments. Also es zeigt alle 
-Absolventenfeiern an. Enthält den Absolventen spezifischen Teil
-
-##list1FB.tpl
-
-> Enthält die Zeilen der Tabelle des Dokuments. Also es zeigt alle 
-Absolventenfeiern an. Enthält den Fachbereichsmitglied spezifischen Teil
-
-##list2.tpl
-
-> Enthält das Ende des Dokuments. Außerdem kann hier die Absolventenfeier.tpl
-aufgerufen werden.
-
+>Dieses Dokument zeigt alle existierenden Absolventenfeiern an. Über diese Seite
+können die Daten des Fachbereichsmitgliedes angepasst werden.
+Auf diese Seite kann man nur über die Registrierung oder die Anmeldung gelangen.
 
 ##login*.tpl
 
