@@ -7,6 +7,7 @@
   <meta name="author" content="Jonas Kuschel, Leon Beer">
   <title>Gruppe I</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style>@import "style.css";</style>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -73,11 +74,11 @@
 <blockquote>
 <p>Hier werden alle Standard CSS Änderungen zurückgesetzt.</p>
 </blockquote>
-<h2 id="webteams.css">webteams.css</h2>
+<h2 id="absolventenfeier.css">absolventenfeier.css</h2>
 <blockquote>
 <p>Hier wird die Webseite verschönert. Style Anpassungen können hier gemacht werden.</p>
 </blockquote>
-<h2 id="webteams.js">webteams.js</h2>
+<h2 id="absolventenfeier.js">absolventenfeier.js</h2>
 <blockquote>
 <p>Hier wird das Löschen Event in den Absolventenfeiern abgefangen. Außerdem wird das Confirm-Popup implementiert, welches bei der Betätigung des Löschvorgangs in der Liste geöffnet wird. Der Löschvorgang kann durch die Confirm Message abgebrochen werden. Hier wird auch die Passwort validierung und die Email Überprüfung implementiert.</p>
 </blockquote>
@@ -92,6 +93,10 @@
 <h2 id="absolventfeier.json">Absolventfeier.json</h2>
 <blockquote>
 <p>Hier werden die Daten der Absolventenfeiern gespeichert.</p>
+</blockquote>
+<h2 id="absolventprüfer.json">AbsolventPrüfer.json</h2>
+<blockquote>
+<p>Hier sind die Zuordnungen der Prüfer zu den Absolventen gespeichert. In der ersten Stelle wird die Absolventen ID gespeichert. Die zweite Stelle ist vom 1. Prüfer und die dritte Stelle vom 2. Prüfer des Absolventen belegt. Jede Zuordnungen besitzt eine eigene ID.</p>
 </blockquote>
 <h2 id="absolventanmeldung.json">AbsolventAnmeldung.json</h2>
 <blockquote>
@@ -109,6 +114,30 @@
 <blockquote>
 <p>Dokumentation des Projektes in Markdown Form.</p>
 </blockquote>
+<h2 id="abschlussarbeitenliste.tpl">AbschlussarbeitenListe.tpl</h2>
+<blockquote>
+<p>Hier werden alle Abschlussarbeiten mit den jeweiligen Absolventen angezeigt. Die Liste ist in Bachelor und Master Arbeiten unterteilt. Außerdem können hier die zugeordneten Prüfer angezeigt werden.</p>
+</blockquote>
+<h2 id="absolventenliste.tpl">AbsolventenListe.tpl</h2>
+<blockquote>
+<p>Über dieses Template werden alle sich im System befindlichen Absolventen angezeigt. Über diese Seite kann man weiter zur Prüfer Zuordnungen gelangen.</p>
+</blockquote>
+<h2 id="eval.tpl">eval.tpl</h2>
+<blockquote>
+<p>Auf dieses Template gelangt man wenn man auf der Startseite auf &quot;Datenpflege und Auswertung&quot; klickt. Hier können die Absolventfeiern verwaltet werden, Teilnahme Listen angezeigt, Prüfer zugeordnet und eine Liste der Abschlussarbeiten angezeigt werden.</p>
+</blockquote>
+<h2 id="prüferzuordnen.tpl">PrüferZuordnen.tpl</h2>
+<blockquote>
+<p>Hier können den Absolventen Prüfer zugeordnet werden. Als 1. Prüfer können nur Professoren ausgewählt werden. Außerdem kann ein Professor nicht 1. und 2. Prüfer sein. Als 2. Prüfer kommen auch Fachbereichsmitglieder in Frage.</p>
+</blockquote>
+<h2 id="teilnahmeliste.tpl">TeilnahmeListe.tpl</h2>
+<blockquote>
+<p>Dieses Template kann über die &quot;eval&quot; Seite aufgerufen werden. Hier werden alle Teilnehmer einer Absolventenfeier aufgelistet.</p>
+</blockquote>
+<h2 id="updateabsolventenfeier.tpl">updateAbsolventenfeier.tpl</h2>
+<blockquote>
+<p>Über dieses Template können die Parameter einer Absolventenfeier angepasst werden.</p>
+</blockquote>
 <h2 id="server.py">server.py</h2>
 <blockquote>
 <p>Startet den Webserver. Besitzt die main() Funktion. Initilisiert cherrypy.</p>
@@ -123,7 +152,7 @@
 </blockquote>
 <h1 id="ergebnis">Ergebnis</h1>
 <blockquote>
-<p>Ich fand es schwierig die Anforderungen teilweise umzusetzten da es nur eine unzureichende Dokumentation über cherrypy im Internet gibt. Ich würde gerne wissen wie sich manche Dinge umsetzen lassen ohne javascript zu nutzen.</p>
+<p>Das Ergebnis der Überprüfungen war, dass keine Fehler gefunden wurden.</p>
 </blockquote>
 </body>
 </html>

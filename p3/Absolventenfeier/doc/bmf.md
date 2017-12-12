@@ -76,11 +76,11 @@ Sie kann nur nach der Anmeldung/Registrierung erreicht werden.
 
 > Hier werden alle Standard CSS Änderungen zurückgesetzt.
 
-## webteams.css
+## absolventenfeier.css
 
 > Hier wird die Webseite verschönert. Style Anpassungen können hier gemacht werden.
 	
-## webteams.js
+## absolventenfeier.js
 
 > Hier wird das Löschen Event in den Absolventenfeiern abgefangen. Außerdem wird das Confirm-Popup implementiert, welches bei der Betätigung des Löschvorgangs 
 in der Liste geöffnet wird. Der Löschvorgang kann durch die Confirm Message abgebrochen werden.
@@ -98,6 +98,13 @@ Hier wird auch die Passwort validierung und die Email Überprüfung implementier
 
 > Hier werden die Daten der Absolventenfeiern gespeichert.
 
+## AbsolventPrüfer.json
+
+> Hier sind die Zuordnungen der Prüfer zu den Absolventen gespeichert.
+In der ersten Stelle wird die Absolventen ID gespeichert. Die zweite Stelle 
+ist vom 1. Prüfer und die dritte Stelle vom 2. Prüfer des Absolventen belegt.
+Jede Zuordnungen besitzt eine eigene ID.
+
 ## AbsolventAnmeldung.json
 
 > Hier werden die Daten der Anmeldungen an Absolventenfeiern von Absolventen gespeichert.
@@ -114,10 +121,41 @@ Hier wird auch die Passwort validierung und die Email Überprüfung implementier
 
 > Dokumentation des Projektes in Markdown Form.
 
+##AbschlussarbeitenListe.tpl
+
+> Hier werden alle Abschlussarbeiten mit den jeweiligen Absolventen angezeigt.
+Die Liste ist in Bachelor und Master Arbeiten unterteilt. Außerdem können hier
+die zugeordneten Prüfer angezeigt werden.
+
+##AbsolventenListe.tpl
+
+> Über dieses Template werden alle sich im System befindlichen Absolventen angezeigt.
+Über diese Seite kann man weiter zur Prüfer Zuordnungen gelangen.
+
+##eval.tpl
+
+> Auf dieses Template gelangt man wenn man auf der Startseite auf "Datenpflege und Auswertung"
+klickt. Hier können die Absolventfeiern verwaltet werden, Teilnahme Listen angezeigt, Prüfer
+zugeordnet und eine Liste der Abschlussarbeiten angezeigt werden.
+
+##PrüferZuordnen.tpl
+
+> Hier können den Absolventen Prüfer zugeordnet werden. Als 1. Prüfer können nur Professoren
+ausgewählt werden. Außerdem kann ein Professor nicht 1. und 2. Prüfer sein. Als 2. Prüfer
+kommen auch Fachbereichsmitglieder in Frage. 
+
+##TeilnahmeListe.tpl
+
+> Dieses Template kann über die "eval" Seite aufgerufen werden. Hier werden alle Teilnehmer einer
+Absolventenfeier aufgelistet. 
+
+##updateAbsolventenfeier.tpl
+
+> Über dieses Template können die Parameter einer Absolventenfeier angepasst werden.
+
 ## server.py
 
 > Startet den Webserver. Besitzt die main() Funktion. Initilisiert cherrypy.
-
 
 # Datenablage
 
@@ -132,6 +170,4 @@ Jeder Absolvent oder FB Mitglied kann sich nur an einer Absolventenfeier anmelde
 
 # Ergebnis
 
->Ich fand es schwierig die Anforderungen teilweise umzusetzten da es nur
-eine unzureichende Dokumentation über cherrypy im Internet gibt. Ich würde
-gerne wissen wie sich manche Dinge umsetzen lassen ohne javascript zu nutzen.
+> Das Ergebnis der Überprüfungen war, dass keine Fehler gefunden wurden.
