@@ -1,0 +1,28 @@
+
+.wrapper{
+   display: flex;
+   flex-flow: row;
+   flex-wrap: wrap;
+   height: 100%;
+}
+.wrapper > * {
+   border: 2px black solid;
+}
+header{
+   flex-basis: 100%;
+}
+aside{
+   min-width: 200px;
+   flex:2;
+}
+main{
+   min-width: 600px;
+   flex: 10;
+}
+footer{
+   width: 90%;
+
+   position: fixed;
+   bottom: 0px;
+   background-color: white;
+}
